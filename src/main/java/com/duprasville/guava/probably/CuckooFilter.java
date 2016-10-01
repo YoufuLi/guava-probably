@@ -18,6 +18,7 @@ import com.google.common.annotations.Beta;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Objects;
 import com.google.common.hash.Funnel;
+import com.google.common.hash.Funnels;
 import com.google.common.primitives.SignedBytes;
 
 import java.io.DataInputStream;
@@ -484,6 +485,9 @@ public final class CuckooFilter<E> implements ProbabilisticFilter<E>, Serializab
     return Objects.hashCode(funnel, cuckooStrategy, table);
   }
 
+  public static Funnel getfunnel(){
+    return Funnels.unencodedCharsFunnel();
+  }
   /**
    * Creates a filter with the expected number of insertions and expected false positive
    * probability. <p/> <p>Note that overflowing a {@link CuckooFilter} with significantly more
